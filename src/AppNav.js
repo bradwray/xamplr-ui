@@ -9,7 +9,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import ToolDrawer from "./ToolDrawer.js";
+import ToolDrawer from "./ListDrawer.js";
 import Drawer from "@material-ui/core/Drawer";
 
 const styles = {
@@ -68,6 +68,7 @@ class AppNav extends React.Component {
 
             <Drawer open={this.state.drawer} onClose={this.handleDrawer}>
               <div>
+                LOGO
                 <ToolDrawer close={this.handleDrawer} />
               </div>
             </Drawer>

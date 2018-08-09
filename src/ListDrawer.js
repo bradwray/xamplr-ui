@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import List from "@material-ui/core/List";
-import Divider from "@material-ui/core/Divider";
+import VocabList from "./VocabList.js";
+import ClassroomLists from "./ClassroomLists.js";
 
 const styles = {
   list: {
-    width: 250
+    width: 300
   },
+  panel: {},
   fullList: {
     width: "auto"
   }
@@ -18,23 +18,11 @@ class ToolDrawer extends React.Component {
   render() {
     const { classes } = this.props;
 
-    const sideList = (
+    return (
       <div className={classes.list}>
-        <List>yes</List>
-        <Divider />
-        <List>umm</List>
+        <ClassroomLists />
       </div>
     );
-
-    const fullList = (
-      <div className={classes.fullList}>
-        <List>what</List>
-        <Divider />
-        <List>huh?</List>
-      </div>
-    );
-
-    return <div>{sideList}</div>;
   }
 }
 
