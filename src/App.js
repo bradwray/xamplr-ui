@@ -8,6 +8,7 @@ import StepContent from "@material-ui/core/StepContent";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
+import Learn from "./Learn.js";
 import Evaluate from "./Evaluate.js";
 import Create from "./Create";
 import { withTheme } from "@material-ui/core/styles";
@@ -41,26 +42,19 @@ const styles = theme => ({
 });
 
 function getSteps() {
-  return ["Definitions & Examples", "Create Your Own", "Evaluate Others"];
+  return ["Learn", "Create", "Evaluate"];
 }
 
 function getStepContent(step, open) {
   switch (step) {
     case 0:
-      return <TermInfo />;
+      return <Learn />;
     case 1:
       return <Create />;
     case 2:
       return <Evaluate open={open} />;
     default:
       return "Unknown step";
-  }
-}
-
-class TermInfo extends React.Component {
-  state = {};
-  render() {
-    return <div>Here is where Term info things will go for each term</div>;
   }
 }
 

@@ -6,16 +6,20 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Collapse from "@material-ui/core/Collapse";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
+import InboxIcon from "@material-ui/icons/Toc";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
-import StarBorder from "@material-ui/icons/StarBorder";
+import CheckBoxBlank from "@material-ui/icons/CheckBoxOutlineBlank";
+import CheckedOff from "@material-ui/icons/CheckBox";
 
 const styles = theme => ({
   root: {
     width: "100%",
     maxWidth: 360,
-    backgroundColor: theme.palette.background.paper
+    backgroundColor: "#fff"
+  },
+  good: {
+    color: "#5cdb95"
   },
   nested: {
     paddingLeft: theme.spacing.unit * 4
@@ -45,19 +49,23 @@ class VocabList extends React.Component {
           <List component="div" disablePadding>
             <ListItem button className={classes.nested}>
               <ListItemIcon>
-                <StarBorder />
+                {false ? <CheckedOff /> : <CheckBoxBlank />}
               </ListItemIcon>
               <ListItemText inset primary="Functional Fixedness" />
             </ListItem>
             <ListItem button className={classes.nested}>
               <ListItemIcon>
-                <StarBorder />
+                {true ? (
+                  <CheckedOff className={classes.good} />
+                ) : (
+                  <CheckBoxBlank />
+                )}
               </ListItemIcon>
               <ListItemText inset primary="Heuristics" />
             </ListItem>
             <ListItem button className={classes.nested}>
               <ListItemIcon>
-                <StarBorder />
+                <CheckBoxBlank />
               </ListItemIcon>
               <ListItemText inset primary="Availability Bias" />
             </ListItem>

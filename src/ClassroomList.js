@@ -12,6 +12,9 @@ const styles = theme => ({
   root: {
     width: "100%"
   },
+  classroom: {
+    backgroundColor: "#ddd"
+  },
   heading: {
     fontSize: theme.typography.pxToRem(15),
     flexBasis: "33.33%",
@@ -23,7 +26,7 @@ const styles = theme => ({
   }
 });
 
-class ClassroomLists extends React.Component {
+class ClassroomList extends React.Component {
   state = {
     expanded: null
   };
@@ -41,6 +44,7 @@ class ClassroomLists extends React.Component {
     return (
       <div className={classes.root}>
         <ExpansionPanel
+          className={classes.classroom}
           expanded={expanded === "panel1"}
           onChange={this.handleChange("panel1")}
         >
@@ -67,34 +71,7 @@ class ClassroomLists extends React.Component {
               <li>
                 <VocabList />
               </li>
-              <li>
-                <VocabList />
-              </li>
-              <li>
-                <VocabList />
-              </li>
-              <li>
-                <VocabList />
-              </li>
-              <li>
-                <VocabList />
-              </li>
             </ul>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-        <ExpansionPanel
-          expanded={expanded === "panel2"}
-          onChange={this.handleChange("panel2")}
-        >
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography className={classes.heading}>Psych Class</Typography>
-            <Typography className={classes.secondaryHeading}>
-              Mr. Wray
-            </Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <VocabList />
-            <VocabList />
           </ExpansionPanelDetails>
         </ExpansionPanel>
       </div>
@@ -102,8 +79,8 @@ class ClassroomLists extends React.Component {
   }
 }
 
-ClassroomLists.propTypes = {
+ClassroomList.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(ClassroomLists);
+export default withStyles(styles)(ClassroomList);

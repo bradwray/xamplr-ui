@@ -6,8 +6,9 @@ import Feedback from "./Feedback.js";
 
 const data = [
   "Functional fixedness is shown when you think a hammer can only be used on nails.",
-  "When a tight rope was cut I couldn't tie the two ends together because they were not long enough. I also could not let them go or else the sailboat mast attached to one would have fallen. I overcame functional fixedness by tying one end to my vice grip pliers and clamping the pliers onto the other end of rope.",
   "You have functional fixedness so you refuse to watch any other tv show except Riverdale.",
+  "This is an example of functional fixedness hahah",
+  "Limiting a familiar object to its traditional function and being closed off to other, new functions.",
   "Lily displayed functional fixedness when she failed to realize that she could have used a stapler as a paperweight.",
   "Functional Fixedness helped Sophie realize that she didn't have to cuss the guy out, who just cut her off while driving to the store to get ice pops for yoga class."
 ];
