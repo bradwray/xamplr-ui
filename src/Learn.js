@@ -35,16 +35,16 @@ function Learn(props) {
       <Card className={classes.card}>
         <CardContent>
           <Typography variant="headline" component="h2">
-            functional fixedness
+            {props.term.name}
           </Typography>
           <Typography className={classes.pos} color="textSecondary">
-            noun
+            {props.term.pos}
           </Typography>
           <Typography component="p">
-            Limiting a familiar object to its traditional function and being
-            closed off to other, new functions.
+            {props.term.stockDefinitions[0]}
             <br />
-            <LearnExampleSwiper />
+            <br />
+            <LearnExampleSwiper exes={props.term.stockExamples} />
           </Typography>
         </CardContent>
       </Card>

@@ -52,7 +52,6 @@ class AppNav extends React.Component {
     const { classes } = this.props;
     const { auth, anchorEl } = this.state;
     const open = Boolean(anchorEl);
-    console.log(this.state);
     return (
       <div className={classes.root}>
         <AppBar position="static" color="secondary">

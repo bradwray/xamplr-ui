@@ -5,6 +5,7 @@ import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
+import Button from "@material-ui/core/Button";
 
 const styles = theme => ({
   container: {
@@ -16,6 +17,16 @@ const styles = theme => ({
   },
   input: {
     color: "#444"
+  },
+  button: {
+    marginTop: theme.spacing.unit * 3,
+    marginRight: theme.spacing.unit,
+    marginLeft: theme.spacing.unit,
+    "&:hover": {
+      transform: "scale(1.1)",
+      backgroundColor: "#05386b",
+      color: "#5cdb95"
+    }
   }
 });
 
@@ -31,13 +42,21 @@ class Create extends React.Component {
     this.setState({ nonexample: event.target.value });
   };
 
+  handleBack = () => {
+    this.props.back();
+  };
+
+  handleSubmit = () => {
+    this.props.submit();
+  };
+
   render() {
     const { classes } = this.props;
 
     return (
       <div className={classes.container}>
-        Based on what you learned about this term in step 1, make an original
-        example and non example.
+        Based on what you learned about this term, make an original example and
+        non-example.
         <FormControl
           className={classes.formControl}
           fullWidth={true}
@@ -64,11 +83,27 @@ class Create extends React.Component {
             id="name-helper"
             multiline={true}
             value={this.state.nonexample}
-            onChange={this.handleChangNon}
+            onChange={this.handleChangeNon}
           />
           <FormHelperText id="name-helper-text">
-            An incorrect usage of the term
+            A clearly incorrect (but not absurdly incorrect) usage of the term
           </FormHelperText>
+          <div>
+            <Button
+              onClick={this.handleBack}
+              className={this.props.classes.button}
+            >
+              Back
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.handleSubmit}
+              className={this.props.classes.button}
+            >
+              Submit
+            </Button>
+          </div>
         </FormControl>
       </div>
     );

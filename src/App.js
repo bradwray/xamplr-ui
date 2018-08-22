@@ -45,29 +45,48 @@ function getSteps() {
   return ["Learn", "Create", "Evaluate"];
 }
 
-function getStepContent(step, open) {
-  switch (step) {
-    case 0:
-      return <Learn />;
-    case 1:
-      return <Create />;
-    case 2:
-      return <Evaluate open={open} />;
-    default:
-      return "Unknown step";
-  }
-}
-
 let transitioning = false;
 
 class App extends React.Component {
   state = {
     activeStep: 0,
-    open: false
+    open: false,
+    validExamples: false,
+    term: {
+      name: "term.name",
+      pos: "noun",
+      stockDefinitions: ["def1", "def2", "def3"],
+      stockExamples: ["exone", "extwo", "exthree"],
+      forms: [
+        { form: "form1", pos: "noun" },
+        { form: "form2", pos: "verb past tense" }
+      ]
+    }
   };
 
-  examplesCheckOut = () => {
-    return true;
+  getStepContent = step => {
+    switch (step) {
+      case 0:
+        return <Learn term={this.state.term} />;
+      case 1:
+        return (
+          <Create
+            term={this.state.term}
+            back={this.handleBack}
+            submit={this.handleNext}
+          />
+        );
+      case 2:
+        return <Evaluate term={this.state.term} open={this.state.open} />;
+      default:
+        return "Unknown step";
+    }
+  };
+  getExamples = (ex, non) => {
+    this.setState({
+      example: ex,
+      nonexample: non
+    });
   };
 
   handleNext = () => {
@@ -97,6 +116,14 @@ class App extends React.Component {
     }, 150);
   };
 
+  handleSubmitExamples = () => {
+    this.setState({ check: true });
+  };
+  examplesCheckOut = () => {
+    console.log("they check out");
+    this.handleNext();
+  };
+
   handleReset = () => {
     this.setState({
       activeStep: 0
@@ -121,32 +148,12 @@ class App extends React.Component {
             onClick={this.handleNext}
             className={this.props.classes.button}
           >
-            Next
+            Got it
           </Button>
         </div>
       );
     }
-    if (!this.state.transitioning && this.state.activeStep === 1) {
-      buttons = (
-        <div>
-          <Button
-            onClick={this.handleBack}
-            className={this.props.classes.button}
-          >
-            Back
-          </Button>
-          <Button
-            variant="contained"
-            disabled={!this.examplesCheckOut()}
-            color="primary"
-            onClick={this.handleNext}
-            className={this.props.classes.button}
-          >
-            Next
-          </Button>
-        </div>
-      );
-    }
+
     if (!this.state.transitioning && this.state.activeStep === 2) {
       buttons = (
         <div>
@@ -162,7 +169,7 @@ class App extends React.Component {
             onClick={this.handleBegin}
             className={this.props.classes.button}
           >
-            Begin!
+            Start
           </Button>
         </div>
       );
@@ -171,10 +178,10 @@ class App extends React.Component {
   };
 
   render() {
+    console.log(this.state);
     const { classes } = this.props;
     const steps = getSteps();
     const { activeStep } = this.state;
-    console.log(this.state.transitioning);
     return (
       <div className={classes.root}>
         <AppNav />
@@ -187,7 +194,11 @@ class App extends React.Component {
                 </StepLabel>
                 <StepContent>
                   <Typography variant="body2">
-                    {getStepContent(index, this.state.open)}
+                    {this.getStepContent(
+                      index,
+                      this.state.open,
+                      this.state.term
+                    )}
                   </Typography>
                   <div className={classes.actionsContainer}>
                     {this.whichButtons()}

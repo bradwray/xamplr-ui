@@ -101,7 +101,7 @@ class LearnExampleSwiper extends React.Component {
           onChangeIndex={this.handleStepChange}
           enableMouseEvents
         >
-          {this.state.examples.map(step => (
+          {this.props.exes.map(step => (
             <Paper square elevation={0} className={classes.header}>
               <Typography>{step}</Typography>
             </Paper>
