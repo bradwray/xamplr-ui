@@ -6,6 +6,12 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Button from "@material-ui/core/Button";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import Typography from "@material-ui/core/Typography";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import YourExamples from "./YourExamples.js";
 
 const styles = theme => ({
   container: {
@@ -50,6 +56,10 @@ class Create extends React.Component {
     this.props.submit();
   };
 
+  handleYourExamples = () => {
+    console.log("yup");
+  };
+
   render() {
     const { classes } = this.props;
 
@@ -57,6 +67,7 @@ class Create extends React.Component {
       <div className={classes.container}>
         Based on what you learned about this term, make an original example and
         non-example.
+        {true ? <YourExamples termName={this.props.term.name} /> : <div />}
         <FormControl
           className={classes.formControl}
           fullWidth={true}
@@ -89,17 +100,14 @@ class Create extends React.Component {
             A clearly incorrect (but not absurdly incorrect) usage of the term
           </FormHelperText>
           <div>
-            <Button
-              onClick={this.handleBack}
-              className={this.props.classes.button}
-            >
+            <Button onClick={this.handleBack} className={classes.button}>
               Back
             </Button>
             <Button
               variant="contained"
               color="primary"
               onClick={this.handleSubmit}
-              className={this.props.classes.button}
+              className={classes.button}
             >
               Submit
             </Button>

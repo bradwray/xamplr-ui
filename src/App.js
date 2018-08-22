@@ -53,7 +53,7 @@ class App extends React.Component {
     open: false,
     validExamples: false,
     term: {
-      name: "term.name",
+      name: "functional fixedness",
       pos: "noun",
       stockDefinitions: ["def1", "def2", "def3"],
       stockExamples: ["exone", "extwo", "exthree"],
