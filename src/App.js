@@ -58,23 +58,43 @@ function getStepContent(step, open) {
   }
 }
 
+let transitioning = false;
+
 class App extends React.Component {
   state = {
     activeStep: 0,
     open: false
   };
 
+  examplesCheckOut = () => {
+    return true;
+  };
+
   handleNext = () => {
     this.setState(state => ({
-      activeStep: state.activeStep + 1
+      activeStep: state.activeStep + 1,
+      transitioning: true
     }));
+
+    setTimeout(() => {
+      this.setState(state => ({
+        transitioning: false
+      }));
+    }, 150);
   };
 
   handleBack = () => {
     this.setState(state => ({
       activeStep: state.activeStep - 1,
-      open: false
+      open: false,
+      transitioning: true
     }));
+
+    setTimeout(() => {
+      this.setState(state => ({
+        transitioning: false
+      }));
+    }, 150);
   };
 
   handleReset = () => {
@@ -90,11 +110,71 @@ class App extends React.Component {
     });
   };
 
+  whichButtons = () => {
+    let buttons;
+    if (!this.state.transitioning && this.state.activeStep === 0) {
+      buttons = (
+        <div>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={this.handleNext}
+            className={this.props.classes.button}
+          >
+            Next
+          </Button>
+        </div>
+      );
+    }
+    if (!this.state.transitioning && this.state.activeStep === 1) {
+      buttons = (
+        <div>
+          <Button
+            onClick={this.handleBack}
+            className={this.props.classes.button}
+          >
+            Back
+          </Button>
+          <Button
+            variant="contained"
+            disabled={!this.examplesCheckOut()}
+            color="primary"
+            onClick={this.handleNext}
+            className={this.props.classes.button}
+          >
+            Next
+          </Button>
+        </div>
+      );
+    }
+    if (!this.state.transitioning && this.state.activeStep === 2) {
+      buttons = (
+        <div>
+          <Button
+            onClick={this.handleBack}
+            className={this.props.classes.button}
+          >
+            Back
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={this.handleBegin}
+            className={this.props.classes.button}
+          >
+            Begin!
+          </Button>
+        </div>
+      );
+    }
+    return buttons;
+  };
+
   render() {
     const { classes } = this.props;
     const steps = getSteps();
     const { activeStep } = this.state;
-
+    console.log(this.state.transitioning);
     return (
       <div className={classes.root}>
         <AppNav />
@@ -110,34 +190,7 @@ class App extends React.Component {
                     {getStepContent(index, this.state.open)}
                   </Typography>
                   <div className={classes.actionsContainer}>
-                    <div>
-                      <Button
-                        disabled={activeStep === 0}
-                        onClick={this.handleBack}
-                        className={classes.button}
-                      >
-                        Back
-                      </Button>
-                      {activeStep !== steps.length - 1 ? (
-                        <Button
-                          variant="contained"
-                          color="primary"
-                          onClick={this.handleNext}
-                          className={classes.button}
-                        >
-                          Next
-                        </Button>
-                      ) : (
-                        <Button
-                          variant="contained"
-                          color="primary"
-                          onClick={this.handleBegin}
-                          className={classes.button}
-                        >
-                          Begin!
-                        </Button>
-                      )}
-                    </div>
+                    {this.whichButtons()}
                   </div>
                 </StepContent>
               </Step>
