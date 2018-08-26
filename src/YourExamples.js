@@ -13,6 +13,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import DeleteIcon from "@material-ui/icons/Delete";
+import Divider from "@material-ui/core/Divider";
 
 const styles = theme => ({
   root: {
@@ -25,7 +26,7 @@ const styles = theme => ({
     main: theme.primary
   },
   panel: {
-    backgroundColor: "#eefeee",
+    backgroundColor: "#eeeeee",
     marginTop: theme.spacing.unit * 2,
     marginBottom: theme.spacing.unit * 2
   },
@@ -44,12 +45,37 @@ const styles = theme => ({
     overflowX: "auto",
     whiteSpace: "normal",
     wordWrap: "break-word"
+  },
+  title: {
+    marginTop: theme.spacing.unit,
+    marginLeft: theme.spacing.unit * 2,
+    fontSize: theme.typography.pxToRem(19)
   }
 });
 
 class YourExamples extends React.Component {
   state = {
-    expanded: true
+    expanded: true,
+    yourExamples: [
+      {
+        xamp:
+          "yadda yadda yadda yadda humm dadada asdvk djhvsd kvsvad jvalb dsv jalsvdv",
+        non: false,
+        exVotes: 0,
+        nonVotes: 0,
+        garbageVotes: 0,
+        defVotes: 0
+      },
+      {
+        xamp:
+          "yadda yoooo bo bo bo hangdang ba dang a lang a fang wang chang yang",
+        non: true,
+        exVotes: 0,
+        nonVotes: 0,
+        garbageVotes: 0,
+        defVotes: 0
+      }
+    ]
   };
 
   handleChange = () => {
@@ -65,34 +91,38 @@ class YourExamples extends React.Component {
   };
 
   listYourExamples = classes => {
-    return (
-      <Paper>
-        <Table className={classes.table}>
-          <TableBody>
-            <TableRow>
-              <TableCell>
-                <Typography>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                  eget.
+    return this.state.yourExamples.map(item => {
+      return (
+        <div>
+          <Paper>
+            <Table className={classes.table}>
+              <TableBody>
+                <Typography className={classes.title}>
+                  {!item.non ? <div>Example</div> : <div>Non-Example</div>}
                 </Typography>
-                is = 2 isn't =3
-              </TableCell>
-              <TableCell>
-                <Button
-                  mini={true}
-                  variant="fab"
-                  aria-label="Delete"
-                  className={classes.button}
-                >
-                  <DeleteIcon />
-                </Button>
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </Paper>
-    );
+                <TableRow>
+                  <TableCell>
+                    <Typography>{item.xamp}</Typography>
+                    is = 2 isn't =3
+                  </TableCell>
+                  <TableCell>
+                    <Button
+                      mini={true}
+                      variant="fab"
+                      aria-label="Delete"
+                      className={classes.button}
+                    >
+                      <DeleteIcon />
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </Paper>
+          <Divider />
+        </div>
+      );
+    });
   };
 
   render() {

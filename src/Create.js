@@ -6,11 +6,6 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Button from "@material-ui/core/Button";
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import Typography from "@material-ui/core/Typography";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import YourExamples from "./YourExamples.js";
 
 const styles = theme => ({
@@ -38,7 +33,8 @@ const styles = theme => ({
 
 class Create extends React.Component {
   state = {
-    name: ""
+    name: "",
+    hasWrittenExamples: true
   };
 
   handleChangeEx = event => {
@@ -62,12 +58,17 @@ class Create extends React.Component {
 
   render() {
     const { classes } = this.props;
+    const { hasWrittenExamples, example, nonexample } = this.state;
 
     return (
       <div className={classes.container}>
         Based on what you learned about this term, make an original example and
         non-example.
-        {true ? <YourExamples termName={this.props.term.name} /> : <div />}
+        {hasWrittenExamples ? (
+          <YourExamples termName={this.props.term.name} />
+        ) : (
+          <div />
+        )}
         <FormControl
           className={classes.formControl}
           fullWidth={true}
@@ -79,7 +80,7 @@ class Create extends React.Component {
             id="name-simple"
             variant=""
             multiline={true}
-            value={this.state.example}
+            value={example}
             onChange={this.handleChangeEx}
           />
         </FormControl>
@@ -93,7 +94,7 @@ class Create extends React.Component {
           <Input
             id="name-helper"
             multiline={true}
-            value={this.state.nonexample}
+            value={nonexample}
             onChange={this.handleChangeNon}
           />
           <FormHelperText id="name-helper-text">

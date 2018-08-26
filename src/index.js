@@ -52,7 +52,7 @@ const theme = createMuiTheme({
   }
 });
 
-function AppNice() {
+function AppWrap() {
   //console.log(theme);
   return (
     <MuiThemeProvider theme={theme}>
@@ -64,5 +64,5 @@ function AppNice() {
 
 const rootElement = document.querySelector("#root");
 if (rootElement) {
-  render(<AppNice />, rootElement);
+  render(<AppWrap />, rootElement);
 }

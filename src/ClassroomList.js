@@ -28,12 +28,12 @@ const styles = theme => ({
 
 class ClassroomList extends React.Component {
   state = {
-    expanded: null
+    expanded: false
   };
 
-  handleChange = panel => (event, expanded) => {
+  handleChange = () => {
     this.setState({
-      expanded: expanded ? panel : false
+      expanded: !this.state.expanded
     });
   };
 
@@ -45,8 +45,8 @@ class ClassroomList extends React.Component {
       <div className={classes.root}>
         <ExpansionPanel
           className={classes.classroom}
-          expanded={expanded === "panel1"}
-          onChange={this.handleChange("panel1")}
+          expanded={expanded}
+          onChange={this.handleChange}
         >
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <Typography className={classes.heading}>AP Lit</Typography>
