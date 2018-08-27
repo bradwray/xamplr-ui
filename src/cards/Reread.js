@@ -19,7 +19,7 @@ class Reread extends React.Component {
   state = {
     open: false,
     example: "",
-    useGimme: false
+    complaint: false
   };
 
   componentWillReceiveProps = nextProps => {
@@ -34,8 +34,12 @@ class Reread extends React.Component {
     this.setState({ open: false });
   };
 
-  handleCheckGimme = () => {
-    this.setState({ useGimme: !this.state.useGimme });
+  handleComplaint = () => {
+    this.setState({ complaint: true });
+  };
+
+  handleUseGimme = () => {
+    this.handleClose();
   };
 
   render() {
@@ -65,26 +69,26 @@ class Reread extends React.Component {
               disableFocusListener
               title="You have 3 gimmes left for this term"
             >
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={this.state.useGimme}
-                    onChange={this.handleCheckGimme}
-                    value="Use Gimme!"
-                    color="primary"
-                    label="Disabled"
-                  />
-                }
-                label="Use a gimme!"
-                color="primary"
-              />
+              {this.state.complaint ? (
+                <div>
+                  <Button onClick={this.handleUseGimme} color="primary">
+                    Use Gimme
+                  </Button>
+                  <Button onClick={this.handleClose} color="primary">
+                    No thanks
+                  </Button>
+                </div>
+              ) : (
+                <div>
+                  <Button onClick={this.handleClose} color="primary">
+                    Got it
+                  </Button>
+                  <Button onClick={this.handleComplaint} color="primary">
+                    I still think I was right
+                  </Button>
+                </div>
+              )}
             </Tooltip>
-            <Button onClick={this.handleClose} color="primary">
-              Got it
-            </Button>
-            <Button onClick={this.handleClose} color="primary">
-              I still think I was right
-            </Button>
           </DialogActions>
         </Dialog>
       </div>

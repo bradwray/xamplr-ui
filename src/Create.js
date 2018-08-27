@@ -34,7 +34,7 @@ const styles = theme => ({
 class Create extends React.Component {
   state = {
     name: "",
-    hasWrittenExamples: true
+    hasWrittenExamples: false
   };
 
   handleChangeEx = event => {

@@ -24,7 +24,15 @@ function Transition(props) {
 
 class Evaluate extends React.Component {
   state = {
-    open: false
+    open: false,
+    exampleCards: [
+      "Functional fixedness is shown when you think a hammer can only be used on nails.",
+      "You have functional fixedness so you refuse to watch any other tv show except Riverdale.",
+      "This is an example of functional fixedness hahah",
+      "Limiting a familiar object to its traditional function and being closed off to other, new functions.",
+      "Lily displayed functional fixedness when she failed to realize that she could have used a stapler as a paperweight.",
+      "Functional Fixedness helped Sophie realize that she didn't have to cuss the guy out, who just cut her off while driving to the store to get ice pops for yoga class."
+    ]
   };
 
   componentWillReceiveProps = nextProps => {
@@ -67,7 +75,7 @@ class Evaluate extends React.Component {
               </Button>
             </Toolbar>
           </AppBar>
-          <XampSwipe />
+          <XampSwipe data={this.state.exampleCards} />
         </Dialog>
       </div>
     );

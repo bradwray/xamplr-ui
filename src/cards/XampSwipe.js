@@ -4,15 +4,6 @@ import Card from "./DraggableCard";
 import "./swipeCard.css";
 import Feedback from "./Feedback.js";
 
-const data = [
-  "Functional fixedness is shown when you think a hammer can only be used on nails.",
-  "You have functional fixedness so you refuse to watch any other tv show except Riverdale.",
-  "This is an example of functional fixedness hahah",
-  "Limiting a familiar object to its traditional function and being closed off to other, new functions.",
-  "Lily displayed functional fixedness when she failed to realize that she could have used a stapler as a paperweight.",
-  "Functional Fixedness helped Sophie realize that she didn't have to cuss the guy out, who just cut her off while driving to the store to get ice pops for yoga class."
-];
-
 const CustomAlertLeft = () => <span>Non-Example</span>;
 const CustomAlertRight = () => <span>Example</span>;
 const CustomAlertTop = () => <span>Definition</span>;
@@ -91,7 +82,7 @@ class XampSwipe extends React.Component {
           alertTop={<CustomAlertTop />}
           alertBottom={<CustomAlertBottom />}
         >
-          {data.map((item, key) => (
+          {this.props.data.map((item, key) => (
             <Card
               key={key}
               onSwipeTop={this.swipeTop}
@@ -108,7 +99,7 @@ class XampSwipe extends React.Component {
           message="correct"
           open={this.state.showFeedback}
           itemNum={this.state.currentCard}
-          example={data[this.state.currentCard - 1]}
+          example={this.props.data[this.state.currentCard - 1]}
         />
       </div>
     );

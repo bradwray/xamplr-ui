@@ -48,8 +48,14 @@ const styles = theme => ({
   },
   title: {
     marginTop: theme.spacing.unit,
-    marginLeft: theme.spacing.unit * 2,
+    marginLeft: theme.spacing.unit * 3,
     fontSize: theme.typography.pxToRem(19)
+  },
+  votes: {
+    fontSize: theme.typography.pxToRem(12)
+  },
+  divider: {
+    marginTop: theme.spacing.unit
   }
 });
 
@@ -84,42 +90,53 @@ class YourExamples extends React.Component {
     });
   };
 
-  handleDelete = () => {
+  handleDelete = key => {
+    let yours = this.state.yourExamples;
+    yours.splice(key, 1);
     this.setState({
-      expanded: true
+      yourExamples: yours
     });
   };
 
   listYourExamples = classes => {
-    return this.state.yourExamples.map(item => {
+    return this.state.yourExamples.map((item, key) => {
       return (
         <div>
-          <Paper>
-            <Table className={classes.table}>
-              <TableBody>
-                <Typography className={classes.title}>
-                  {!item.non ? <div>Example</div> : <div>Non-Example</div>}
-                </Typography>
-                <TableRow>
-                  <TableCell>
-                    <Typography>{item.xamp}</Typography>
-                    is = 2 isn't =3
-                  </TableCell>
-                  <TableCell>
-                    <Button
-                      mini={true}
-                      variant="fab"
-                      aria-label="Delete"
-                      className={classes.button}
-                    >
-                      <DeleteIcon />
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </Paper>
-          <Divider />
+          <li>
+            <Paper>
+              <Table className={classes.table}>
+                <TableBody>
+                  <Typography className={classes.title}>
+                    {!item.non ? <div>Example</div> : <div>Non-Example</div>}
+                  </Typography>
+
+                  <TableRow>
+                    <TableCell>
+                      <Typography>{item.xamp}</Typography>
+                      <Divider className={classes.divider} />
+                      <div className={classes.votes}>
+                        Votes: ex={item.exVotes} non={item.nonVotes} trash/def={item.garbageVotes +
+                          item.defVotes}
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <Button
+                        mini={true}
+                        variant="fab"
+                        aria-label="Delete"
+                        className={classes.button}
+                        onClick={() => this.handleDelete(key)}
+                      >
+                        <DeleteIcon />
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Paper>
+            <Divider />
+          </li>
+          <br />
         </div>
       );
     });
@@ -140,7 +157,7 @@ class YourExamples extends React.Component {
             </Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            {this.listYourExamples(classes)}
+            <ul> {this.listYourExamples(classes)}</ul>
           </ExpansionPanelDetails>
         </ExpansionPanel>
         <Typography color="secondary">
