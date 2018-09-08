@@ -6,8 +6,6 @@ import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Reread from "./Reread";
-import amber from "@material-ui/core/colors/amber";
-import SnackbarContent from "@material-ui/core/SnackbarContent";
 
 const styles = theme => ({
   close: {

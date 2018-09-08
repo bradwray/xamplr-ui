@@ -2,11 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import VocabList from "./VocabList.js";
-import ClassroomList from "./ClassroomList.js";
+import Classroom from "./Classroom.js";
 import Divider from "@material-ui/core/Divider";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import Button from "@material-ui/core/Button";
-import logo from "./xamplr6.png";
 import ListManager from "./ListManager.js";
 import JoinAClass from "./JoinAClass.js";
 
@@ -36,7 +35,58 @@ const styles = theme => ({
 class ListDrawer extends React.Component {
   state = {
     listManagerOpen: false,
-    JoinClassOpen: false
+    JoinClassOpen: false,
+    isStudent: true,
+    classrooms: [
+      {
+        teacher: "Mr. Wray",
+        classroomName: "Psych",
+        lists: [
+          {
+            listName: "Cognition",
+            currentlyAssigned: true,
+            items: [
+              {
+                termName: "Functional Fixedness",
+                termIndex: 66,
+                done: true
+              },
+              {
+                termName: "Hindsight Bias",
+                termIndex: 16,
+                done: false
+              },
+              {
+                termName: "Algorithms",
+                termIndex: 45,
+                done: false
+              }
+            ]
+          },
+          {
+            listName: "Memory",
+            currentlyAssigned: false,
+            items: [
+              {
+                termName: "Chunking",
+                termIndex: 66,
+                done: true
+              },
+              {
+                termName: "Suggestibility",
+                termIndex: 16,
+                done: false
+              },
+              {
+                termName: "Spacing",
+                termIndex: 22,
+                done: false
+              }
+            ]
+          }
+        ]
+      }
+    ]
   };
 
   handleListManager = () => {
@@ -55,9 +105,18 @@ class ListDrawer extends React.Component {
 
     return (
       <div className={classes.list}>
-        <ListSubheader component="div">Lists From Your Classes</ListSubheader>
-        <ClassroomList />
-
+        {this.state.isStudent ? (
+          <div>
+            <ListSubheader component="div">
+              Lists From Your Classes
+            </ListSubheader>
+            {this.state.classrooms.map(classroom => {
+              return <Classroom classroom={classroom} />;
+            })}
+          </div>
+        ) : (
+          <div />
+        )}
         <ListSubheader component="div">Your Own Lists</ListSubheader>
         <Divider />
         <ul>

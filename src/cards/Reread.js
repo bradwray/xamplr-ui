@@ -7,8 +7,6 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
 import Tooltip from "@material-ui/core/Tooltip";
-import Checkbox from "@material-ui/core/Checkbox";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Zoom from "@material-ui/core/Zoom";
 
 function Transition(props) {
@@ -31,7 +29,10 @@ class Reread extends React.Component {
 
   handleClose = () => {
     this.props.close();
-    this.setState({ open: false });
+    this.setState({
+      open: false,
+      complaint: false
+    });
   };
 
   handleComplaint = () => {

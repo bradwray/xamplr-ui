@@ -26,9 +26,15 @@ const styles = theme => ({
   }
 });
 
-class ClassroomList extends React.Component {
+class Classroom extends React.Component {
   state = {
     expanded: false
+  };
+
+  componentWillReceiveProps = next => {
+    this.setState({
+      expanded: this.props.currentlyAssigned
+    });
   };
 
   handleChange = () => {
@@ -49,28 +55,22 @@ class ClassroomList extends React.Component {
           onChange={this.handleChange}
         >
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography className={classes.heading}>AP Lit</Typography>
+            <Typography className={classes.heading}>
+              {this.props.classroom.classroomName}
+            </Typography>
             <Typography className={classes.secondaryHeading}>
-              Mrs. Yuscavage
+              {this.props.classroom.teacher}
             </Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <ul>
-              <li>
-                <VocabList />
-              </li>
-              <li>
-                <VocabList />
-              </li>
-              <li>
-                <VocabList />
-              </li>
-              <li>
-                <VocabList />
-              </li>
-              <li>
-                <VocabList />
-              </li>
+              {this.props.classroom.lists.map(list => {
+                return (
+                  <li>
+                    <VocabList items={list} />
+                  </li>
+                );
+              })}
             </ul>
           </ExpansionPanelDetails>
         </ExpansionPanel>
@@ -79,8 +79,8 @@ class ClassroomList extends React.Component {
   }
 }
 
-ClassroomList.propTypes = {
+Classroom.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(ClassroomList);
+export default withStyles(styles)(Classroom);

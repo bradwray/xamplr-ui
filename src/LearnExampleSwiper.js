@@ -5,32 +5,7 @@ import MobileStepper from "@material-ui/core/MobileStepper";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
-import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import SwipeableViews from "react-swipeable-views";
-
-const tutorialSteps = [
-  {
-    label: "How to be happy :)",
-    imgPath: "/static/images/steppers/1-happy.jpg"
-  },
-  {
-    label: "1. Work with something that you like, like…",
-    imgPath: "/static/images/steppers/2-work.jpg"
-  },
-  {
-    label: "2. Keep your friends close to you and hangout with them",
-    imgPath: "/static/images/steppers/3-friends.jpg"
-  },
-  {
-    label: "3. Travel everytime that you have a chance",
-    imgPath: "/static/images/steppers/4-travel.jpg"
-  },
-  {
-    label: "4. And contribute to Material-UI :D",
-    imgPath: "/static/images/steppers/5-mui.png"
-  }
-];
 
 const styles = theme => ({
   root: {
@@ -46,6 +21,7 @@ const styles = theme => ({
     paddingRight: theme.spacing.unit * 2,
     backgroundColor: "#000",
     marginBottom: 0,
+    textAlign: "left",
     backgroundColor: theme.palette.background.default
   },
   img: {

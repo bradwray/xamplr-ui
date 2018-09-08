@@ -11,9 +11,6 @@ import Typography from "@material-ui/core/Typography";
 import Learn from "./Learn.js";
 import Evaluate from "./Evaluate.js";
 import Create from "./Create";
-import { withTheme } from "@material-ui/core/styles";
-import { createMuiTheme } from "@material-ui/core/styles";
-import purple from "@material-ui/core/colors/purple";
 import AppNav from "./AppNav.js";
 
 const styles = theme => ({
@@ -25,6 +22,12 @@ const styles = theme => ({
   },
   resetContainer: {
     padding: theme.spacing.unit * 3
+  },
+  content: {
+    width: "100%",
+    maxWidth: "1000px",
+    marginLeft: "auto",
+    marginRight: "auto"
   },
   color: {
     main: theme.primary
@@ -56,7 +59,11 @@ class App extends React.Component {
       name: "functional fixedness",
       pos: "noun",
       stockDefinitions: ["def1", "def2", "def3"],
-      stockExamples: ["exone", "extwo", "exthree"],
+      stockExamples: [
+        "Here is an example of this term... yadda yadda.",
+        "extwo",
+        "exthree"
+      ],
       forms: [
         { form: "form1", pos: "noun" },
         { form: "form2", pos: "verb past tense" }
@@ -185,29 +192,31 @@ class App extends React.Component {
     return (
       <div className={classes.root}>
         <AppNav />
-        <Stepper activeStep={activeStep} orientation="vertical">
-          {steps.map((label, index) => {
-            return (
-              <Step key={label}>
-                <StepLabel>
-                  <Typography variant="headline">{label}</Typography>
-                </StepLabel>
-                <StepContent>
-                  <Typography variant="body2">
-                    {this.getStepContent(
-                      index,
-                      this.state.open,
-                      this.state.term
-                    )}
-                  </Typography>
-                  <div className={classes.actionsContainer}>
-                    {this.whichButtons()}
-                  </div>
-                </StepContent>
-              </Step>
-            );
-          })}
-        </Stepper>
+        <div className={classes.content}>
+          <Stepper activeStep={activeStep} orientation="vertical">
+            {steps.map((label, index) => {
+              return (
+                <Step key={label}>
+                  <StepLabel>
+                    <Typography variant="headline">{label}</Typography>
+                  </StepLabel>
+                  <StepContent>
+                    <Typography className={classes.content} variant="body2">
+                      {this.getStepContent(
+                        index,
+                        this.state.open,
+                        this.state.term
+                      )}
+                    </Typography>
+                    <div className={classes.actionsContainer}>
+                      {this.whichButtons()}
+                    </div>
+                  </StepContent>
+                </Step>
+              );
+            })}
+          </Stepper>
+        </div>
         {activeStep === steps.length && (
           <Paper square elevation={0} className={classes.resetContainer}>
             <Typography>All steps completed - you&quot;re finished</Typography>
