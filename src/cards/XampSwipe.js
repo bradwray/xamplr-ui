@@ -14,64 +14,68 @@ class XampSwipe extends React.Component {
     super(props);
     this.state = {
       currentCard: 0,
-      showFeedback: false
-    };
-
-    //these aren't working yet they'll need to be send into the
-    document.onkeydown = e => {
-      console.log(e.key);
-      if (e.key === "ArrowLeft") {
-        this.swipeLeft();
-      }
-      if (e.key === "ArrowRight") {
-        this.swipeRight();
-      }
-      if (e.key === "ArrowUp") {
-        this.swipeTop();
-      }
-      if (e.key === "ArrowDown") {
-        this.swipeBottom();
-      }
+      showFeedback: false,
+      correct: []
     };
   }
-
   swipeLeft = () => {
+    var correct = this.state.correct;
+    correct[this.state.currentCard] = this.checkIt(
+      "nonexample",
+      this.state.currentCard
+    );
     this.setState(state => ({
       showFeedback: true,
+      correct: correct,
       currentCard: state.currentCard + 1
     }));
   };
   swipeRight = () => {
+    var correct = this.state.correct;
+    correct[this.state.currentCard] = this.checkIt(
+      "example",
+      this.state.currentCard
+    );
     this.setState(state => ({
       showFeedback: true,
+      correct: correct,
       currentCard: state.currentCard + 1
     }));
   };
 
   swipeTop = () => {
+    var correct = this.state.correct;
+    correct[this.state.currentCard] = this.checkIt(
+      "definition",
+      this.state.currentCard
+    );
     this.setState(state => ({
       showFeedback: true,
+      correct: correct,
       currentCard: state.currentCard + 1
     }));
   };
 
   swipeBottom = () => {
+    var correct = this.state.correct;
+    correct[this.state.currentCard] = this.checkIt(
+      "garbage",
+      this.state.currentCard
+    );
     this.setState(state => ({
       showFeedback: true,
+      correct: correct,
       currentCard: state.currentCard + 1
     }));
   };
-  done() {}
 
-  feedback(obj) {
-    var orig = obj.style.color;
-    obj.style.color = "#f00";
-    setTimeout(() => {
-      obj.style.color = orig;
-    }, 300);
-  }
+  checkIt = (answer, currentCard) => {
+    return Math.random() > 0.5;
+    //this is where the answer checking should go... mostly from the "done" method
+  };
 
   render() {
+    console.log(this.state);
     return (
       <div className="cardholder">
         <h3>Example=right, non-example=left, definition=up,garbage=down</h3>
@@ -101,7 +105,7 @@ class XampSwipe extends React.Component {
         </Cards>
         {/* put the props in message for whether it was right */}
         <Feedback
-          message="correct"
+          correct={this.state.correct[this.state.currentCard - 1]}
           open={this.state.showFeedback}
           itemNum={this.state.currentCard}
           example={this.props.data[this.state.currentCard - 1]}

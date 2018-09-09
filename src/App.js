@@ -13,6 +13,15 @@ import Evaluate from "./Evaluate.js";
 import Create from "./Create";
 import AppNav from "./AppNav.js";
 
+const data = [
+  "Functional fixedness is shown when you think a hammer can only be used on nails.",
+  "You have functional fixedness so you refuse to watch any other tv show except Riverdale.",
+  "This is an example of functional fixedness hahah",
+  "Limiting a familiar object to its traditional function and being closed off to other, new functions.",
+  "Lily displayed functional fixedness when she failed to realize that she could have used a stapler as a paperweight.",
+  "Functional Fixedness helps Sophie realize that she didn't have to cuss the guy out, who just cut her off while driving to the store to get ice pops for yoga class."
+];
+
 const styles = theme => ({
   root: {
     width: "100%"
@@ -41,6 +50,11 @@ const styles = theme => ({
       backgroundColor: "#05386b",
       color: "#5cdb95"
     }
+  },
+  stepContainer: {
+    backgroundColor: "#fff",
+    maxHeight: "100%",
+    marginBottom: "0px"
   }
 });
 
@@ -84,7 +98,13 @@ class App extends React.Component {
           />
         );
       case 2:
-        return <Evaluate term={this.state.term} open={this.state.open} />;
+        return (
+          <Evaluate
+            term={this.state.term}
+            open={this.state.open}
+            examples={this.state.examples}
+          />
+        );
       default:
         return "Unknown step";
     }
@@ -99,7 +119,8 @@ class App extends React.Component {
   handleNext = () => {
     this.setState(state => ({
       activeStep: state.activeStep + 1,
-      transitioning: true
+      transitioning: true,
+      examples: this.state.activeStep === 1 ? data : [] //this is where you should put a makequiz function that returns an array of objects
     }));
 
     setTimeout(() => {
@@ -193,7 +214,11 @@ class App extends React.Component {
       <div className={classes.root}>
         <AppNav />
         <div className={classes.content}>
-          <Stepper activeStep={activeStep} orientation="vertical">
+          <Stepper
+            className={classes.stepContainer}
+            activeStep={activeStep}
+            orientation="vertical"
+          >
             {steps.map((label, index) => {
               return (
                 <Step key={label}>

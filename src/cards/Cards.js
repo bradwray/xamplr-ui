@@ -20,7 +20,6 @@ class SwipeCards extends Component {
     this.setSize = this.setSize.bind(this);
 
     document.onkeydown = e => {
-      console.log(e.key);
       if (e.key === "ArrowLeft") {
         this.props.arrowLeft();
         this.removeCard("Left", this.state.index);

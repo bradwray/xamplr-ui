@@ -70,7 +70,7 @@ class Feedback extends React.Component {
 
   render() {
     const { classes } = this.props;
-
+    console.log(this.props.correct);
     //determine color based on whether it was right or wrong
     //if(right or wrong logic)
     let color = "#F00";
@@ -87,7 +87,11 @@ class Feedback extends React.Component {
           ContentProps={{
             "aria-describedby": "message-id"
           }}
-          message={<span id="message-id">9 out of 10 users disagree</span>}
+          message={
+            <span id="message-id">
+              {this.props.correct ? "Correct!" : "9 out of 10 users disagree"}
+            </span>
+          }
           action={[
             <Button
               className={classes.button}
