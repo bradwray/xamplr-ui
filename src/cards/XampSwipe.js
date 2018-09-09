@@ -19,6 +19,7 @@ class XampSwipe extends React.Component {
 
     //these aren't working yet they'll need to be send into the
     document.onkeydown = e => {
+      console.log(e.key);
       if (e.key === "ArrowLeft") {
         this.swipeLeft();
       }
@@ -81,6 +82,10 @@ class XampSwipe extends React.Component {
           alertRight={<CustomAlertRight />}
           alertTop={<CustomAlertTop />}
           alertBottom={<CustomAlertBottom />}
+          arrowTop={this.swipeTop}
+          arrowBottom={this.swipeBottom}
+          arrowLeft={this.swipeLeft}
+          arrowRight={this.swipeRight}
         >
           {this.props.data.map((item, key) => (
             <Card

@@ -36,6 +36,7 @@ h2 {
   min-height: 70vh;
   max-height: 70vh;
   width: 90vw;
+
   overflow: hidden;
   border: 1px solid #e5e5e5;
 }
@@ -49,6 +50,7 @@ h2 {
   color: #05386b;
   height: 60vh;
   width: 80vw;
+  max-width: 500px;
   padding: 20px 20px 20px 50px;
   margin: 0 auto;
   transition: box-shadow 0.3s;
@@ -69,6 +71,7 @@ h2 {
 
 .alert {
   width: 45%;
+  max-width: 200px;
   min-height: 10%;
   position: absolute;
   z-index: 9999;

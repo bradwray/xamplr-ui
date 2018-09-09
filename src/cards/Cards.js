@@ -18,7 +18,28 @@ class SwipeCards extends Component {
     };
     this.removeCard = this.removeCard.bind(this);
     this.setSize = this.setSize.bind(this);
+
+    document.onkeydown = e => {
+      console.log(e.key);
+      if (e.key === "ArrowLeft") {
+        this.props.arrowLeft();
+        this.removeCard("Left", this.state.index);
+      }
+      if (e.key === "ArrowRight") {
+        this.props.arrowRight();
+        this.removeCard("Right", this.state.index);
+      }
+      if (e.key === "ArrowUp") {
+        this.props.arrowTop();
+        this.removeCard("Top", this.state.index);
+      }
+      if (e.key === "ArrowDown") {
+        this.props.arrowBottom();
+        this.removeCard("Bottom", this.state.index);
+      }
+    };
   }
+
   removeCard(side, cardId) {
     const { children, onEnd } = this.props;
     setTimeout(() => this.setState({ [`alert${side}`]: false }), 500);
