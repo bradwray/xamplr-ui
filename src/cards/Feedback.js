@@ -70,7 +70,6 @@ class Feedback extends React.Component {
 
   render() {
     const { classes } = this.props;
-    console.log(this.props.correct);
     //determine color based on whether it was right or wrong
     //if(right or wrong logic)
     let color = "#F00";
@@ -82,7 +81,7 @@ class Feedback extends React.Component {
             horizontal: "center"
           }}
           open={this.state.open}
-          autoHideDuration={4000}
+          autoHideDuration={3000}
           onClose={this.handleClose}
           ContentProps={{
             "aria-describedby": "message-id"
@@ -115,7 +114,9 @@ class Feedback extends React.Component {
         <Reread
           open={this.state.reread}
           close={this.closeReread}
-          example={this.props.example}
+          example={
+            this.props.example === undefined ? "" : this.props.example.example
+          }
         />
       </div>
     );

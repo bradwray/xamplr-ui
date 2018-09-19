@@ -43,10 +43,10 @@ class Evaluate extends React.Component {
     const { classes, examples } = this.props;
     return (
       <div>
-        You are about to see a stack of 15 examples on cards. Swipe a card to
-        the right if you think it is a real example, swipe to the left if you
-        think it is not a real example, swipe it up if it is a definition and
-        swipe down if you think it is not worthy of being on the site.
+        You are about to see a stack of 15 cards. Swipe a card to the right if
+        you think it contains a real example, swipe to the left if you think it
+        is not a real example, swipe it up if it is a definition and swipe down
+        if you think it is not worthy of being on the site.
         <Dialog
           fullScreen
           open={this.state.open}

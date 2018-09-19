@@ -22,6 +22,87 @@ const data = [
   "Functional Fixedness helps Sophie realize that she didn't have to cuss the guy out, who just cut her off while driving to the store to get ice pops for yoga class."
 ];
 
+const newData = [
+  {
+    example:
+      "Functional fixedness is shown when you think a hammer can only be used on nails.",
+    fromTerm: "66",
+    hasConsensus: true,
+    key: "-ki0t",
+    yesVotes: ["qwe", "sddg", "adda", "sdvg"],
+    noVotes: ["qwdwwe", "fqesddg", "wdadda", "rfbwb"],
+    defVotes: [],
+    frownVotes: [],
+    nonExample: false,
+    AddedUserId: "sfvfad"
+  },
+  {
+    example:
+      "You have functional fixedness so you refuse to watch any other tv show except Riverdale.",
+    fromTerm: "66",
+    hasConsensus: true,
+    key: "-ki0t",
+    yesVotes: ["qwe", "sddg", "adda", "sdvg"],
+    noVotes: ["qwdwwe", "fqesddg", "wdadda", "rfbwb"],
+    defVotes: [],
+    frownVotes: [],
+    nonExample: true,
+    definition: false,
+    AddedUserId: "sfvfad"
+  },
+  {
+    example: "This is an example of functional fixedness hahah",
+    fromTerm: "66",
+    hasConsensus: true,
+    key: "-ki0t",
+    yesVotes: ["qwe", "sddg", "adda", "sdvg"],
+    noVotes: ["qwdwwe", "fqesddg", "wdadda", "rfbwb"],
+    defVotes: [],
+    frownVotes: [],
+    flagged: [],
+    frowned: true,
+    definition: false,
+    nonExample: false,
+    AddedUserId: "sfvfad"
+  },
+  {
+    example:
+      "Limiting a familiar object to its traditional function and being closed off to other, new functions.",
+    fromTerm: "66",
+    hasConsensus: true,
+    key: "-ki0t",
+    yesVotes: ["qwe", "sddg", "adda", "sdvg"],
+    noVotes: ["qwdwwe", "fqesddg", "wdadda", "rfbwb"],
+    defVotes: [],
+    frownVotes: [],
+    definition: true,
+    nonExample: false,
+    AddedUserId: "sfvfad"
+  },
+  {
+    example:
+      "Lily displayed functional fixedness when she failed to realize that she could have used a stapler as a paperweight.",
+    fromTerm: "66",
+    hasConsensus: true,
+    key: "-ki0t",
+    yesVotes: ["qwe", "sddg", "adda", "sdvg"],
+    noVotes: ["qwdwwe", "fqesddg", "wdadda", "rfbwb"],
+    nonExample: false,
+    AddedUserId: "sfvfad"
+  },
+  {
+    example:
+      "Functional Fixedness helps Sophie realize that she didn't have to cuss the guy out, who just cut her off while driving to the store to get ice pops for yoga class.",
+    fromTerm: "66",
+    hasConsensus: true,
+    key: "-ki0t",
+    yesVotes: ["qwe", "sddg", "adda", "sdvg"],
+    noVotes: ["qwdwwe", "fqesddg", "wdadda", "rfbwb"],
+    nonExample: false,
+    AddedUserId: "sfvfad"
+  }
+];
+
 const styles = theme => ({
   root: {
     width: "100%"
@@ -109,7 +190,7 @@ class App extends React.Component {
         return "Unknown step";
     }
   };
-  getExamples = (ex, non) => {
+  getUserExamples = (ex, non) => {
     this.setState({
       example: ex,
       nonexample: non
@@ -120,7 +201,7 @@ class App extends React.Component {
     this.setState(state => ({
       activeStep: state.activeStep + 1,
       transitioning: true,
-      examples: this.state.activeStep === 1 ? data : [] //this is where you should put a makequiz function that returns an array of objects
+      examples: this.state.activeStep === 1 ? newData : [] //this is where you should put a makequiz function that returns an array of objects
     }));
 
     setTimeout(() => {
@@ -206,7 +287,7 @@ class App extends React.Component {
   };
 
   render() {
-    console.log(this.state);
+    //console.log(this.state);
     const { classes } = this.props;
     const steps = getSteps();
     const { activeStep } = this.state;

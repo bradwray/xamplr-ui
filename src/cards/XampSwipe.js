@@ -24,11 +24,11 @@ class XampSwipe extends React.Component {
       "nonexample",
       this.state.currentCard
     );
-    this.setState(state => ({
+    this.setState({
       showFeedback: true,
       correct: correct,
-      currentCard: state.currentCard + 1
-    }));
+      currentCard: this.state.currentCard + 1
+    });
   };
   swipeRight = () => {
     var correct = this.state.correct;
@@ -36,11 +36,11 @@ class XampSwipe extends React.Component {
       "example",
       this.state.currentCard
     );
-    this.setState(state => ({
+    this.setState({
       showFeedback: true,
       correct: correct,
-      currentCard: state.currentCard + 1
-    }));
+      currentCard: this.state.currentCard + 1
+    });
   };
 
   swipeTop = () => {
@@ -49,11 +49,11 @@ class XampSwipe extends React.Component {
       "definition",
       this.state.currentCard
     );
-    this.setState(state => ({
+    this.setState({
       showFeedback: true,
       correct: correct,
-      currentCard: state.currentCard + 1
-    }));
+      currentCard: this.state.currentCard + 1
+    });
   };
 
   swipeBottom = () => {
@@ -62,20 +62,44 @@ class XampSwipe extends React.Component {
       "garbage",
       this.state.currentCard
     );
-    this.setState(state => ({
+    this.setState({
       showFeedback: true,
       correct: correct,
-      currentCard: state.currentCard + 1
-    }));
+      currentCard: this.state.currentCard + 1
+    });
   };
 
   checkIt = (answer, currentCard) => {
+    let xamp = this.props.data[currentCard];
+
+    if (xamp.hasConsensus) {
+      if (
+        !xamp.nonExample &&
+        answer === "example" &&
+        !xamp.definition &&
+        !xamp.frowned
+      ) {
+        return true;
+      } else if (
+        xamp.nonExample &&
+        answer === "nonexample" &&
+        !xamp.definition &&
+        !xamp.frowned
+      ) {
+        return true;
+      } else if (xamp.definition && answer === "definition" && !xamp.frowned) {
+        return true;
+      } else if (xamp.frowned && answer === "garbage" && !xamp.definition) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
     return Math.random() > 0.5;
-    //this is where the answer checking should go... mostly from the "done" method
   };
 
   render() {
-    console.log(this.state);
     return (
       <div className="cardholder">
         <h3>Example=right, non-example=left, definition=up,garbage=down</h3>
@@ -99,7 +123,7 @@ class XampSwipe extends React.Component {
               onSwipeLeft={this.swipeLeft}
               onSwipeRight={this.swipeRight}
             >
-              <h2>{item}</h2>
+              <h2>{item.example}</h2>
             </Card>
           ))}
         </Cards>
