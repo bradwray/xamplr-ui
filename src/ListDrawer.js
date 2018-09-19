@@ -8,6 +8,7 @@ import ListSubheader from "@material-ui/core/ListSubheader";
 import Button from "@material-ui/core/Button";
 import ListManager from "./ListManager.js";
 import JoinAClass from "./JoinAClass.js";
+import Admin from "./Admin.js";
 
 const styles = theme => ({
   list: {
@@ -35,7 +36,8 @@ const styles = theme => ({
 class ListDrawer extends React.Component {
   state = {
     listManagerOpen: false,
-    JoinClassOpen: false,
+    joinClassOpen: false,
+    adminOpen: false,
     isStudent: true,
     classrooms: [
       {
@@ -96,7 +98,13 @@ class ListDrawer extends React.Component {
   };
   handleJoinClass = () => {
     this.setState({
-      JoinClassOpen: !this.state.JoinClassOpen
+      joinClassOpen: !this.state.JoinClassOpen
+    });
+  };
+
+  handleAdmin = () => {
+    this.setState({
+      adminOpen: !this.state.adminOpen
     });
   };
 
@@ -138,15 +146,23 @@ class ListDrawer extends React.Component {
           >
             Join a Classroom
           </Button>
+          <Button
+            color="primary"
+            className={classes.button}
+            onClick={this.handleAdmin}
+          >
+            Admin
+          </Button>
         </ul>
         <ListManager
           open={this.state.listManagerOpen}
           close={this.handleListManager}
         />
         <JoinAClass
-          open={this.state.JoinClassOpen}
+          open={this.state.joinClassOpen}
           close={this.handleJoinClass}
         />
+        <Admin open={this.state.adminOpen} close={this.handleAdmin} />
       </div>
     );
   }

@@ -12,7 +12,7 @@ import Learn from "./Learn.js";
 import Evaluate from "./Evaluate.js";
 import Create from "./Create";
 import AppNav from "./AppNav.js";
-
+//hey hey
 const data = [
   "Functional fixedness is shown when you think a hammer can only be used on nails.",
   "You have functional fixedness so you refuse to watch any other tv show except Riverdale.",
