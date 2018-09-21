@@ -12,14 +12,12 @@ const styles = theme => ({
     flexGrow: 1
   },
   header: {
+    height: "100%",
     display: "flex",
     alignItems: "center",
-    textAlign: "center",
     paddingTop: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 2,
     paddingLeft: theme.spacing.unit * 2,
     paddingRight: theme.spacing.unit * 2,
-    backgroundColor: "#000",
     marginBottom: 0,
     textAlign: "left",
     backgroundColor: theme.palette.background.default
@@ -29,6 +27,9 @@ const styles = theme => ({
 
     overflow: "hidden",
     width: "100%"
+  },
+  exampleSwipeContainer: {
+    height: "20vh"
   }
 });
 

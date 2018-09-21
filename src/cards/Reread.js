@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
+import { withStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -8,6 +9,25 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
+import Paper from "@material-ui/core/Paper";
+
+const styles = theme => ({
+  message: {
+    backgroundColor: "#efefef",
+    color: "#05386b",
+    paddingTop: theme.spacing.unit * 2,
+    paddingBottom: theme.spacing.unit * 2,
+    paddingRight: theme.spacing.unit * 2,
+    paddingLeft: theme.spacing.unit * 2
+  }
+});
+
+const message = {
+  example: "9 out of 10 users said this was an example",
+  nonexample: "9 out of 10 users said this was a non-example",
+  definition: "9 out of 10 users said this was a definition",
+  garbage: "9 out of 10 users said this was garbage"
+};
 
 function Transition(props) {
   return <Slide direction="up" {...props} />;
@@ -44,6 +64,7 @@ class Reread extends React.Component {
   };
 
   render() {
+    const { classes } = this.props;
     return (
       <div>
         <Dialog
@@ -59,8 +80,12 @@ class Reread extends React.Component {
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-slide-description">
-              {this.state.example}
+              {this.state.example.example}
             </DialogContentText>
+            <br />
+            <Paper className={classes.message} variant="body2" elevation={1}>
+              ummmmmmmm yeah
+            </Paper>
           </DialogContent>
           <DialogActions>
             <Tooltip
@@ -95,5 +120,4 @@ class Reread extends React.Component {
     );
   }
 }
-
-export default Reread;
+export default withStyles(styles)(Reread);

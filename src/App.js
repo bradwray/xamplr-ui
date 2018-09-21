@@ -12,15 +12,6 @@ import Learn from "./Learn.js";
 import Evaluate from "./Evaluate.js";
 import Create from "./Create";
 import AppNav from "./AppNav.js";
-//hey hey
-const data = [
-  "Functional fixedness is shown when you think a hammer can only be used on nails.",
-  "You have functional fixedness so you refuse to watch any other tv show except Riverdale.",
-  "This is an example of functional fixedness hahah",
-  "Limiting a familiar object to its traditional function and being closed off to other, new functions.",
-  "Lily displayed functional fixedness when she failed to realize that she could have used a stapler as a paperweight.",
-  "Functional Fixedness helps Sophie realize that she didn't have to cuss the guy out, who just cut her off while driving to the store to get ice pops for yoga class."
-];
 
 const newData = [
   {
@@ -153,11 +144,15 @@ class App extends React.Component {
     term: {
       name: "functional fixedness",
       pos: "noun",
-      stockDefinitions: ["def1", "def2", "def3"],
+      stockDefinitions: [
+        "Limiting a familiar object to its traditional function and being closed off to other, new functions.",
+        "def2",
+        "def3"
+      ],
       stockExamples: [
-        "Here is an example of this term... yadda yadda.",
-        "extwo",
-        "exthree"
+        "When you want to tighten a screw you think you need a screwdriver, but to overcome functional fixedness you realize that you could just use a coin.",
+        "You have functional fixedness because when you went to look for a flashlight you forgot that you could use your phone as one instead.",
+        "Because of functional fixedness you don't realize that you can use an old book to place under an uneven table leg to make it straight. Instead you just sit there complaining about the table while reading the old book."
       ],
       forms: [
         { form: "form1", pos: "noun" },
