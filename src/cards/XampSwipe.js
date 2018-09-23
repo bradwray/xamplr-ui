@@ -92,11 +92,20 @@ class XampSwipe extends React.Component {
       } else if (xamp.frowned && answer === "garbage" && !xamp.definition) {
         return true;
       } else {
-        return false;
+        return false; //if it had consensus and you got it wrong
       }
+    } else {
+      //add some logic for if it doesn't have consensus
     }
+  };
 
-    return Math.random() > 0.5;
+  tallyCorrect = () => {
+    if (this.state.correct.length === 0) return "";
+
+    let correct = this.state.correct.filter(item => {
+      return item === true;
+    });
+    return Math.round(100 * (correct.length / this.state.correct.length));
   };
 
   render() {
@@ -127,7 +136,7 @@ class XampSwipe extends React.Component {
             </Card>
           ))}
         </Cards>
-        {/* put the props in message for whether it was right */}
+        {this.tallyCorrect()}
         <Feedback
           correct={this.state.correct[this.state.currentCard - 1]}
           open={this.state.showFeedback}

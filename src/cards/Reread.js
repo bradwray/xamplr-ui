@@ -18,16 +18,10 @@ const styles = theme => ({
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
     paddingRight: theme.spacing.unit * 2,
-    paddingLeft: theme.spacing.unit * 2
+    paddingLeft: theme.spacing.unit * 2,
+    textAlign: "center"
   }
 });
-
-const message = {
-  example: "9 out of 10 users said this was an example",
-  nonexample: "9 out of 10 users said this was a non-example",
-  definition: "9 out of 10 users said this was a definition",
-  garbage: "9 out of 10 users said this was garbage"
-};
 
 function Transition(props) {
   return <Slide direction="up" {...props} />;
@@ -43,7 +37,9 @@ class Reread extends React.Component {
   componentWillReceiveProps = nextProps => {
     this.setState({
       open: nextProps.open,
-      example: nextProps.example
+      example: nextProps.example,
+      gimmes: nextProps.gimmes,
+      gimmeMsg: "Gimmes: You have " + nextProps.gimmes + " left for this term."
     });
   };
 
@@ -56,15 +52,46 @@ class Reread extends React.Component {
   };
 
   handleComplaint = () => {
-    this.setState({ complaint: true });
+    if (this.state.gimmes > 0) {
+      this.setState({ complaint: true });
+    } else {
+      this.handleClose();
+    }
   };
 
   handleUseGimme = () => {
     this.handleClose();
   };
 
+  displayMessage = () => {
+    const message = {
+      example: "9 out of 10 users said this was an example",
+      nonexample: "9 out of 10 users said this was a non-example",
+      definition: "9 out of 10 users said this was a definition",
+      garbage:
+        "9 out of 10 users said this was garbage (nonsense, bad grammar or profanity)",
+      stillVoting:
+        "We're still counting the votes on this one. You'll get credit if your vote agrees with at least 9/10 of the other user's votes."
+    };
+    const xamp = this.state.example;
+    if (xamp.hasConsensus) {
+      if (!xamp.nonExample && !xamp.definition && !xamp.frowned) {
+        return message.example;
+      } else if (xamp.nonExample && !xamp.definition && !xamp.frowned) {
+        return message.nonexample;
+      } else if (xamp.definition && !xamp.frowned) {
+        return message.definition;
+      } else if (xamp.frowned && !xamp.definition) {
+        return message.garbage;
+      } else {
+        return message.stillVoting;
+      }
+    }
+  };
+
   render() {
     const { classes } = this.props;
+    console.log(this.props);
     return (
       <div>
         <Dialog
@@ -84,7 +111,7 @@ class Reread extends React.Component {
             </DialogContentText>
             <br />
             <Paper className={classes.message} variant="body2" elevation={1}>
-              ummmmmmmm yeah
+              {this.displayMessage()}
             </Paper>
           </DialogContent>
           <DialogActions>
@@ -92,7 +119,7 @@ class Reread extends React.Component {
               placement="top"
               TransitionComponent={Zoom}
               disableFocusListener
-              title="You have 3 gimmes left for this term"
+              title={this.state.gimmeMsg}
             >
               {this.state.complaint ? (
                 <div>

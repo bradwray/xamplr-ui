@@ -115,6 +115,7 @@ class Feedback extends React.Component {
           open={this.state.reread}
           close={this.closeReread}
           example={this.props.example === undefined ? "" : this.props.example}
+          gimmes={1}
         />
       </div>
     );
