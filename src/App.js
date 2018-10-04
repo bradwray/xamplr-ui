@@ -12,15 +12,6 @@ import Learn from "./Learn.js";
 import Evaluate from "./Evaluate.js";
 import Create from "./Create";
 import AppNav from "./AppNav.js";
-//hey hey
-const data = [
-  "Functional fixedness is shown when you think a hammer can only be used on nails.",
-  "You have functional fixedness so you refuse to watch any other tv show except Riverdale.",
-  "This is an example of functional fixedness hahah",
-  "Limiting a familiar object to its traditional function and being closed off to other, new functions.",
-  "Lily displayed functional fixedness when she failed to realize that she could have used a stapler as a paperweight.",
-  "Functional Fixedness helps Sophie realize that she didn't have to cuss the guy out, who just cut her off while driving to the store to get ice pops for yoga class."
-];
 
 const newData = [
   {
@@ -139,6 +130,26 @@ const styles = theme => ({
   }
 });
 
+const yourExamples = [
+  {
+    xamp:
+      "yadda yadda yadda yadda humm dadada asdvk djhvsd kvsvad jvalb dsv jalsvdv",
+    non: false,
+    exVotes: 0,
+    nonVotes: 0,
+    garbageVotes: 0,
+    defVotes: 0
+  },
+  {
+    xamp: "yadda yoooo bo bo bo hangdang ba dang a lang a fang wang chang yang",
+    non: true,
+    exVotes: 0,
+    nonVotes: 0,
+    garbageVotes: 0,
+    defVotes: 0
+  }
+];
+
 function getSteps() {
   return ["Learn", "Create", "Evaluate"];
 }
@@ -176,6 +187,7 @@ class App extends React.Component {
             term={this.state.term}
             back={this.handleBack}
             submit={this.handleNext}
+            yourExamples={this.state.yourExamples}
           />
         );
       case 2:
@@ -201,7 +213,8 @@ class App extends React.Component {
     this.setState(state => ({
       activeStep: state.activeStep + 1,
       transitioning: true,
-      examples: this.state.activeStep === 1 ? newData : [] //this is where you should put a makequiz function that returns an array of objects
+      yourExamples: this.state.activeStep === 0 ? yourExamples : [],
+      examples: this.state.activeStep === 1 ? newData : [] //replace newData with methods function getEvaluateData(forterm)
     }));
 
     setTimeout(() => {

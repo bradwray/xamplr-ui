@@ -3,11 +3,22 @@ import Cards from "./Cards";
 import Card from "./DraggableCard";
 import "./swipeCard.css";
 import Feedback from "./Feedback.js";
+import Button from "@material-ui/core/Button";
+import { withStyles } from "@material-ui/core/styles";
 
 const CustomAlertLeft = () => <span>Non-Example</span>;
 const CustomAlertRight = () => <span>Example</span>;
 const CustomAlertTop = () => <span>Definition</span>;
 const CustomAlertBottom = () => <span>Garbage!</span>;
+
+const isTeacher = true; //import this from methods
+
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit,
+    marginLeft: "80%"
+  }
+});
 
 class XampSwipe extends React.Component {
   constructor(props) {
@@ -109,6 +120,7 @@ class XampSwipe extends React.Component {
   };
 
   render() {
+    const { classes } = this.props;
     return (
       <div className="cardholder">
         <h3>Example=right, non-example=left, definition=up,garbage=down</h3>
@@ -132,6 +144,20 @@ class XampSwipe extends React.Component {
               onSwipeLeft={this.swipeLeft}
               onSwipeRight={this.swipeRight}
             >
+              {isTeacher ? (
+                <Button
+                  variant="small"
+                  color="Secondary"
+                  className={classes.button}
+                  onClick={() => {
+                    console.log("yup");
+                  }}
+                >
+                  deny
+                </Button>
+              ) : (
+                <div />
+              )}
               <h2>{item.example}</h2>
             </Card>
           ))}
@@ -147,4 +173,4 @@ class XampSwipe extends React.Component {
     );
   }
 }
-export default XampSwipe;
+export default withStyles(styles)(XampSwipe);

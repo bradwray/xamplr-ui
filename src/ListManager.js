@@ -7,7 +7,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Slide from "@material-ui/core/Slide";
-import ListManagerTools from "./ListManagerTools";
+import ListTools from "./ListTools";
 
 const styles = {
   appBar: {
@@ -64,7 +64,7 @@ class ListManager extends React.Component {
               </Button>
             </Toolbar>
           </AppBar>
-          <ListManagerTools />
+          <ListTools />
         </Dialog>
       </div>
     );

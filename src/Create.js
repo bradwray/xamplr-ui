@@ -34,7 +34,7 @@ const styles = theme => ({
 class Create extends React.Component {
   state = {
     name: "",
-    hasWrittenExamples: false
+    hasWrittenExamples: true
   };
 
   handleChangeEx = event => {
@@ -65,7 +65,10 @@ class Create extends React.Component {
         Based on what you learned about this term, make an original example and
         non-example.
         {hasWrittenExamples ? (
-          <YourExamples termName={this.props.term.name} />
+          <YourExamples
+            termName={this.props.term.name}
+            yourExamples={this.props.yourExamples}
+          />
         ) : (
           <div />
         )}

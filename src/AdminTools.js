@@ -8,6 +8,7 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import AdminNewTeachers from "./AdminNewTeachers.js";
 import AdminNewTerms from "./AdminNewTerms.js";
+import AdminExampleApprover from "./AdminExampleApprover.js";
 
 function TabContainer({ children, dir }) {
   return (
@@ -58,7 +59,7 @@ class AdminTools extends React.Component {
           >
             <Tab label="Approve New Terms" />
             <Tab label="Approve New Teachers" />
-            <Tab label="User Explorer" />
+            <Tab label="Approve Examples" />
           </Tabs>
         </AppBar>
         <SwipeableViews
@@ -81,7 +82,9 @@ class AdminTools extends React.Component {
             <div />
           )}
           {this.state.value === 2 ? (
-            <TabContainer dir={theme.direction}>User activity</TabContainer>
+            <TabContainer dir={theme.direction}>
+              <AdminExampleApprover />
+            </TabContainer>
           ) : (
             <div />
           )}

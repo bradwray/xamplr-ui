@@ -61,27 +61,8 @@ const styles = theme => ({
 
 class YourExamples extends React.Component {
   state = {
-    expanded: true,
-    yourExamples: [
-      {
-        xamp:
-          "yadda yadda yadda yadda humm dadada asdvk djhvsd kvsvad jvalb dsv jalsvdv",
-        non: false,
-        exVotes: 0,
-        nonVotes: 0,
-        garbageVotes: 0,
-        defVotes: 0
-      },
-      {
-        xamp:
-          "yadda yoooo bo bo bo hangdang ba dang a lang a fang wang chang yang",
-        non: true,
-        exVotes: 0,
-        nonVotes: 0,
-        garbageVotes: 0,
-        defVotes: 0
-      }
-    ]
+    expanded: false,
+    yourExamples: []
   };
 
   handleChange = () => {
@@ -91,7 +72,7 @@ class YourExamples extends React.Component {
   };
 
   handleDelete = key => {
-    let yours = this.state.yourExamples;
+    let yours = this.props.yourExamples;
     yours.splice(key, 1);
     this.setState({
       yourExamples: yours
@@ -99,7 +80,7 @@ class YourExamples extends React.Component {
   };
 
   listYourExamples = classes => {
-    return this.state.yourExamples.map((item, key) => {
+    return this.props.yourExamples.map((item, key) => {
       return (
         <div>
           <li>
@@ -143,6 +124,7 @@ class YourExamples extends React.Component {
   };
 
   render() {
+    console.log(this.state);
     const { classes } = this.props;
     const { expanded } = this.state;
     return (
@@ -153,7 +135,7 @@ class YourExamples extends React.Component {
             expandIcon={<ExpandMoreIcon />}
           >
             <Typography color="secondary" className={classes.heading}>
-              Your examples for {this.props.termName}
+              Your examples for {this.props.termName}...
             </Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>

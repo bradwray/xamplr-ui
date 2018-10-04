@@ -6,7 +6,8 @@ import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
-import FindLists from "./FindLists";
+import ListToolsFindLists from "./ListToolsFindLists";
+import ListToolsMakeEdit from "./ListToolsMakeEdit";
 
 function TabContainer({ children, dir }) {
   return (
@@ -28,7 +29,7 @@ const styles = theme => ({
   }
 });
 
-class ListManagerTools extends React.Component {
+class ListTools extends React.Component {
   state = {
     value: 0
   };
@@ -74,14 +75,14 @@ class ListManagerTools extends React.Component {
         >
           {this.state.value === 0 ? (
             <TabContainer dir={theme.direction}>
-              <FindLists importAndSwitch={this.importAndSwitch} />
+              <ListToolsFindLists importAndSwitch={this.importAndSwitch} />
             </TabContainer>
           ) : (
             <div />
           )}
           {this.state.value === 1 ? (
             <TabContainer dir={theme.direction}>
-              <Thinger listImport={this.state.listImport} />
+              <ListToolsMakeEdit listImport={this.state.listImport} />
             </TabContainer>
           ) : (
             <div />
@@ -99,23 +100,9 @@ class ListManagerTools extends React.Component {
   }
 }
 
-ListManagerTools.propTypes = {
+ListTools.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired
 };
 
-export default withStyles(styles, { withTheme: true })(ListManagerTools);
-
-class Thinger extends React.Component {
-  state = {
-    value: 0
-  };
-
-  componentWillMount() {
-    console.log("it's on");
-  }
-
-  render() {
-    return <div>{this.props.listImport}</div>;
-  }
-}
+export default withStyles(styles, { withTheme: true })(ListTools);

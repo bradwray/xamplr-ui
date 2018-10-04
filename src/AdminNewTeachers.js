@@ -35,16 +35,16 @@ class AdminNewTeachers extends React.Component {
     expanded: null,
     newTeachersToCheck: [
       {
-        name: "Steve Jones",
-        email: "sjones@dps.net"
+        name: "Steve Smith",
+        email: "ssmith@dps.net"
       },
       {
-        name: "Steve Turner",
-        email: "sturner@k12albemarle.org"
+        name: "Abe Turner",
+        email: "aturner@k12albemarle.org"
       },
       {
-        name: "Nancy Fenton",
-        email: "nfenton@d125.org"
+        name: "Nancy Clinton",
+        email: "nclinton@d125.org"
       }
     ]
   };
