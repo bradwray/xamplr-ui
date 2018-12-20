@@ -1,5 +1,5 @@
 {
-  "title": "Material demo",
+  "title": "Xamplr ui",
   "description": "https://github.com/mui-org/material-ui/tree/master/docs/src/pages/demos/steppers/VerticalLinearStepper.js",
   "dependencies": {
     "@material-ui/core": "latest",

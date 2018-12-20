@@ -11,40 +11,12 @@ import { withStyles } from "@material-ui/core/styles";
 import ListInspector from "./ListInspector";
 
 const suggestions = [
-  { label: "Afghanistan" },
-  { label: "Aland Islands" },
-  { label: "Albania" },
-  { label: "Algeria" },
-  { label: "American Samoa" },
-  { label: "Andorra" },
-  { label: "Angola" },
-  { label: "Anguilla" },
-  { label: "Antarctica" },
-  { label: "Antigua and Barbuda" },
-  { label: "Argentina" },
-  { label: "Armenia" },
-  { label: "Aruba" },
-  { label: "Australia" },
-  { label: "Austria" },
-  { label: "Azerbaijan" },
-  { label: "Bahamas" },
-  { label: "Bahrain" },
-  { label: "Bangladesh" },
-  { label: "Barbados" },
-  { label: "Belarus" },
-  { label: "Belgium" },
-  { label: "Belize" },
-  { label: "Benin" },
-  { label: "Bermuda" },
-  { label: "Bhutan" },
-  { label: "Bolivia, Plurinational State of" },
-  { label: "Bonaire, Sint Eustatius and Saba" },
-  { label: "Bosnia and Herzegovina" },
-  { label: "Botswana" },
-  { label: "Bouvet Island" },
-  { label: "Brazil" },
-  { label: "British Indian Ocean Territory" },
-  { label: "Brunei Darussalam" }
+  { label: "Biopsychology" },
+  { label: "Hamlet Vocab " },
+  { label: "Geology Words" },
+  { label: "Parts of a Car" },
+  { label: "American Cities" },
+  { label: "Behaviorism" }
 ];
 
 function renderInputComponent(inputProps) {

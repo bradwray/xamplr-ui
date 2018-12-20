@@ -64,7 +64,7 @@ class ListTools extends React.Component {
             centered
           >
             <Tab label="Find Lists" />
-            <Tab label="Make/Edit Lists" />
+            <Tab label="Make/Edit Your Lists" />
             <Tab label="" />
           </Tabs>
         </AppBar>

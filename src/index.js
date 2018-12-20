@@ -1,6 +1,7 @@
 import React from "react";
 import { render } from "react-dom";
 import App from "./App";
+import Home from "./home";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
@@ -54,6 +55,7 @@ function AppWrap() {
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <App />
+      <Home />
     </MuiThemeProvider>
   );
 }

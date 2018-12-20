@@ -45,10 +45,7 @@ function ListInspector(props) {
         >
           terms
         </Typography>
-        <Typography>
-          Functional Fixedness, Algorithms, Heuristics, Divergent Thinking,
-          Chunking
-        </Typography>
+        <Typography>sample term, sample term, sample term</Typography>
       </CardContent>
       <CardActions>
         <Button size="small" onClick={props.importList}>
